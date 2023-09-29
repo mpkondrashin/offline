@@ -2,10 +2,11 @@ import requests
 import time
 from datetime import datetime, timedelta
 
-url_base = 'https://api.xdr.trendmicro.com'
-token = 'YOUR TOKEN'
+vision_one_url_base = 'https://api.xdr.trendmicro.com'
+vision_one_token = 'YOUR TOKEN'
 
 date_time_format = '%Y-%m-%dT%H:%M:%SZ'
+
 
 class VOne:
     def __init__(self, base, token):
@@ -32,7 +33,7 @@ class VOne:
             r = self.get(link, params=params, headers=headers)
             for item in r.json()["items"]:
                 yield item['agentGuid'], item['endpointName']['value']
-            param = {}
+            params = {}
             link = r.json().get('nextLink')
 
     def iterate_offline(self, days):
@@ -53,6 +54,6 @@ class VOne:
 
 
 if __name__ == "__main__":
-    v1 = VOne(url_base, token)
+    v1 = VOne(vision_one_url_base, vision_one_token)
     for hostname in v1.iterate_offline(days=80):
         print(hostname)
