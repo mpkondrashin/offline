@@ -54,5 +54,5 @@ class VOne:
 
 if __name__ == "__main__":
     v1 = VOne(url_base, token)
-    for endpoint in v1.iterate_offline(days=80):
-        print(endpoint)
+    for hostname in v1.iterate_offline(days=80):
+        print(hostname)
