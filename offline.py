@@ -50,7 +50,6 @@ class VOne:
             r = self.get(self.base + '/v3.0/search/endpointActivities', params=params, headers=headers)
             if r.json()['totalCount'] == 0:
                 yield hostname
-            time.sleep(1) # make V1 happy
 
 
 if __name__ == "__main__":
